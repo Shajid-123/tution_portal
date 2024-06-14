@@ -11,14 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-import os
 temp_dir = os.path.join(BASE_DIR, 'templates')
 static_dir = os.path.join(BASE_DIR, 'static')
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -31,7 +29,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Final_project',
     'customer',
-    'tutor',  
+    'tutor',
     'order',
     'social_django'
 ]
@@ -53,18 +50,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'social_django.middleware.SocialAuthExeptionMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
-EMAIL_BACKENDS = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -92,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Final_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -100,10 +95,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'final_project',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -112,16 +107,14 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-
 LOGIN_URL = 'root'
 LOGIN_REDIRECT_URL = 'root'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '23577750501-miphsjr291cecvm5vj3o1o1k9hffqjeh.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'  
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIAL_AUTH_PIPELINE = (
     'customer.pipeline.capture_social_auth_data'
 )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -141,8 +134,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -154,13 +145,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [static_dir,]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [static_dir]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -171,7 +161,3 @@ SOCIAL_AUTH_PIPELINE = (
     'Final_project.pipeline.capture_social_auth_data',  # Add this line
     # ... other pipeline steps ...
 )
-
-
-
-
